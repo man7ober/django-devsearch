@@ -63,17 +63,28 @@ python manage.py migrate
 python manage.py createsuperuser
 ```
 
-**11 - Bundle Static Files**
+**11 - PostgreSQL database adapter**
+
+```bash
+pip install psycopg2-binary
+```
+
+**12 - AWS S3 Storage**
+
+```bash
+pip install django-storages
+pip install boto3
+```
+
+**13 - Bundle Static Files**
 
 ```bash
 python manage.py collectstatic
 ```
 
-**11 - Install Gunicorn Server**
 
-```bash
-pip install gunicorn
-```
+
+
 
 
 
