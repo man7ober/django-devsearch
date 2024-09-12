@@ -82,6 +82,21 @@ pip install boto3
 python manage.py collectstatic
 ```
 
+**14 - Pushed code to Github**
+
+```bash
+git init
+git add .
+git commit -m <commit>
+git remote <origin>
+git push origin master
+```
+
+**15 - Deployed on Vercel**
+
+```bash
+npm i -g vercel
+```
 
 
 
