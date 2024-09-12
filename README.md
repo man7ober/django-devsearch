@@ -2,7 +2,7 @@
 
 Database - Aiven PostgreSQL
 
-Hosted on - https://django-devsearch-jnbo8kakx-mayank-nagoras-projects.vercel.app/
+Hosted on - https://django-devsearch-puce.vercel.app
 
 **01 - Install Virtualenv**
 
