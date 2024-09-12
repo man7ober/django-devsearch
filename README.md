@@ -1,4 +1,4 @@
-## Django - Devsearch
+## Django - DevSearch
 
 Database - Aiven PostgreSQL
 
