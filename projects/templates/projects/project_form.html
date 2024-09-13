@@ -1,4 +1,4 @@
-{% extends 'main.html' %}
+ {% extends 'main.html' %}
 
 {% block content %}
 
@@ -15,8 +15,16 @@
                 
                 {% for field in form %}
                 <div class="form__field">
+                    {% if field.label == 'Featured image' %}
+                    <label for="formInput#text">
+                        {{ field.label }}
+                        <p>⚠️ Compress quality as width: 1280px, height: 720px <a href="https://www.reduceimages.com/" target="_blank">(reduce image)</a></p>
+                    </label>
+                    {{ field }}
+                    {% else %}
                     <label for="formInput#text">{{ field.label }}</label>
                     {{ field }}
+                    {% endif %}
                 </div>
                 {% endfor %}
 

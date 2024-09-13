@@ -100,6 +100,8 @@ git push origin master
 
 ```bash
 npm i -g vercel
+vercel
+vercel --prod
 ```
 
 
