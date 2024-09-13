@@ -20,23 +20,23 @@ def createProfile(sender, instance, created, **kwargs):
     '''
     if created:
         user = instance
-        profile = Profile.objects.create(
+        Profile.objects.create(
             user=user,
             name=user.first_name,
             username=user.username,
             email=user.email
         )
 
-        subject = 'Welcome to DevSe🔍rch'
-        message = f'Hi {profile.name}, we are glad that you are here! lets connect with other developers and find some projects.'
+        # subject = 'Welcome to DevSe🔍rch'
+        # message = f'Hi {profile.name}, we are glad that you are here! lets connect with other developers and find some projects.'
 
-        send_mail(
-            subject,
-            message,
-            settings.EMAIL_HOST_USER,  # sender
-            [profile.email],  # receiver
-            fail_silently=False
-        )
+        # send_mail(
+        #     subject,
+        #     message,
+        #     settings.EMAIL_HOST_USER,  # sender
+        #     [profile.email],  # receiver
+        #     fail_silently=False
+        # )
 
 
 def updateUser(sender, instance, created, **kwargs):
