@@ -110,85 +110,46 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 
-# Static files (CSS, JavaScript, Images)
+# Static files (CSS, JavaScript, Images
 
-if DEBUG:
-    # ************ DEVELOPMENT ******************
+# To manage static files
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = "/static/"
 
-    '''
-    *** projects/models ***
+# To manage user-uploaded files
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+# MEDIA_URL = "/images/"
 
-    featured_image = models.ImageField(
-        null=True, blank=True, upload_to="projects/", default="projects/default-project.png")
+STATICFILES_DIRS = [
+    BASE_DIR / 'static'
+]
 
-    *** users/models ***
+# Server - Localhost:80000
 
-    profile_image = models.ImageField(
-        null=True, blank=True, upload_to='profiles/', default='profiles/default-user.png')
 
-    *** Run migration + migrate ***
-    '''
+# ************ PRODUCTION ******************
 
-    # Database - SQLite
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
+# Database - Aiven PostgreSQL
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'defaultdb',
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASS'),
+        'HOST': os.environ.get('DB_HOST'),
+        'PORT': os.environ.get('DB_PORT'),
     }
+}
 
-    # To manage static files
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    STATIC_URL = "/static/"
+# Storage - AWS S3
 
-    # To manage user-uploaded files
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
-    MEDIA_URL = "/images/"
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_ACCESS_KEY_ID = str(os.environ.get('AWS_ACCESS_KEY_ID'))
+AWS_SECRET_ACCESS_KEY = str(os.environ.get('AWS_SECRET_ACCESS_KEY'))
+AWS_S3_FILE_OVERWRITE = False
+AWS_QUERYSTRING_AUTH = False
+AWS_STORAGE_BUCKET_NAME = 'django-devsearch'
 
-    STATICFILES_DIRS = [
-        BASE_DIR / 'static'
-    ]
-
-    # Server - Localhost:80000
-else:
-
-    # ************ PRODUCTION ******************
-
-    '''
-    *** projects/models ***
-
-    featured_image = models.ImageField(
-        null=True, blank=True, upload_to="images/projects/", default="images/projects/default-project.png")
-
-    *** users/models ***
-
-    profile_image = models.ImageField(
-        null=True, blank=True, upload_to='images/profiles/', default='images/profiles/default-user.png')
-
-    *** Run migration + migrate ***
-    '''
-
-    # Database - Aiven PostgreSQL
-
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'defaultdb',
-            'USER': os.environ.get('DB_USER'),
-            'PASSWORD': os.environ.get('DB_PASS'),
-            'HOST': os.environ.get('DB_HOST'),
-            'PORT': os.environ.get('DB_PORT'),
-        }
-    }
-
-    # Storage - AWS S3
-
-    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-    AWS_ACCESS_KEY_ID = str(os.environ.get('AWS_ACCESS_KEY_ID'))
-    AWS_SECRET_ACCESS_KEY = str(os.environ.get('AWS_SECRET_ACCESS_KEY'))
-    AWS_S3_FILE_OVERWRITE = False
-    AWS_QUERYSTRING_AUTH = False
-    AWS_STORAGE_BUCKET_NAME = 'django-devsearch'
-
-    # Server - Vercel
+# Server - Vercel
