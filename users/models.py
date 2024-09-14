@@ -18,7 +18,7 @@ class Profile(models.Model):
     bio = models.TextField(blank=True, null=True)
     location = models.CharField(max_length=100, blank=True, null=True)
     profile_image = models.ImageField(
-        null=True, blank=True, upload_to='images/profiles/', default='images/profiles/default-user.png')
+        null=True, blank=True, upload_to='profiles/', default='profiles/default-user.png')
     social_github = models.CharField(max_length=100, blank=True, null=True)
     social_twitter = models.CharField(max_length=100, blank=True, null=True)
     social_linkedin = models.CharField(max_length=100, blank=True, null=True)
